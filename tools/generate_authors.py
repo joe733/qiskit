@@ -87,9 +87,10 @@ def main(repos=None, output_path=None):
                 author, email = mailmap_out.split('<')
                 author = author.strip()
                 email = email[:-1].strip()
-            if author.lower() not in [
-                x.lower() for x in authors
-            ] and email.lower() not in [x.lower() for x in emails]:
+            if not (
+                author.lower() in [x.lower() for x in authors]
+                or email.lower() in [x.lower() for x in emails]
+            ):
                 authors.append(author)
                 emails.append(email)
 
