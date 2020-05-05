@@ -49,7 +49,7 @@ class QiskitTestCase(TestCase):
         if dict1 == dict2:
             # Shortcut
             return
-        if not (delta is None or places is None):
+        if delta is not None and places is not None:
             raise TypeError("specify delta or places not both")
 
         standard_msg = ''
