@@ -40,13 +40,14 @@ def build_rb_circuit(nseeds=1, length_vector=None,
         np.random.seed(10)
     else:
         np.random.seed(seed)
-    rb_opts = {}
-    rb_opts['nseeds'] = nseeds
-    rb_opts['length_vector'] = length_vector
-    rb_opts['rb_pattern'] = rb_pattern
-    rb_opts['length_multiplier'] = length_multiplier
-    rb_opts['seed_offset'] = seed_offset
-    rb_opts['align_cliffs'] = align_cliffs
+    rb_opts = {
+        'nseeds': nseeds,
+        'length_vector': length_vector,
+        'rb_pattern': rb_pattern,
+        'length_multiplier': length_multiplier,
+        'seed_offset': seed_offset,
+        'align_cliffs': align_cliffs,
+    }
 
     # Generate the sequences
     try:

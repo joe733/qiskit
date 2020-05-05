@@ -61,10 +61,11 @@ def main(repos=None, output_path=None):
             author, email = author_str.split('|')
             author = author.strip()
             email = email.strip()
-            if author.lower() not in [x.lower() for x in authors]:
-                if email.lower() not in [x.lower() for x in emails]:
-                    authors.append(author)
-                    emails.append(email)
+            if author.lower() not in [
+                x.lower() for x in authors
+            ] and email.lower() not in [x.lower() for x in emails]:
+                authors.append(author)
+                emails.append(email)
 
         co_author_cmd = ['git', 'log', '--use-mailmap']
         if meta:
@@ -86,10 +87,11 @@ def main(repos=None, output_path=None):
                 author, email = mailmap_out.split('<')
                 author = author.strip()
                 email = email[:-1].strip()
-            if author.lower() not in [x.lower() for x in authors]:
-                if email.lower() not in [x.lower() for x in emails]:
-                    authors.append(author)
-                    emails.append(email)
+            if author.lower() not in [
+                x.lower() for x in authors
+            ] and email.lower() not in [x.lower() for x in emails]:
+                authors.append(author)
+                emails.append(email)
 
         # Add whitelisted authors
         for author in whitelisted_authors:

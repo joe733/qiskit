@@ -52,13 +52,8 @@ class FakeJob(BaseJob):
             _status = JobStatus.QUEUED
         elif self._cancelled:
             _status = JobStatus.CANCELLED
-        elif self._done:
-            _status = JobStatus.DONE
-        elif self._error:
-            _status = JobStatus.ERROR
         else:
-            raise Exception('Unexpected state of {0}'.format(
-                self.__class__.__name__))
+            _status = JobStatus.DONE
         _status_msg = None
         return {'status': _status,
                 'status_msg': _status_msg}
