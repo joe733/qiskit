@@ -99,7 +99,7 @@ class _VersionHistory(Table):
                 match = version_regex.search(setup_py)
                 if match:
                     ver = match[1]
-                    if '<' in match[1]:
+                    if '<' in ver:
                         ver = '>=' + ver
                     if package != 'qiskit_terra':
                         version[package] = ver

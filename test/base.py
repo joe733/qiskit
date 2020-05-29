@@ -49,14 +49,14 @@ class QiskitTestCase(TestCase):
         if dict1 == dict2:
             # Shortcut
             return
-        if delta is not None and places is not None:
+        if not (delta is None or places is None):
             raise TypeError("specify delta or places not both")
 
+        standard_msg = ''
+        # check value for keys in target
+        keys1 = set(dict1.keys())
+        success = True
         if places is not None:
-            success = True
-            standard_msg = ''
-            # check value for keys in target
-            keys1 = set(dict1.keys())
             for key in keys1:
                 val1 = dict1.get(key, default_value)
                 val2 = dict2.get(key, default_value)
@@ -75,17 +75,13 @@ class QiskitTestCase(TestCase):
                     standard_msg += '(%s: %s != %s), ' % (safe_repr(key),
                                                           safe_repr(val1),
                                                           safe_repr(val2))
-            if success is True:
+            if success:
                 return
             standard_msg = standard_msg[:-2] + ' within %s places' % places
 
         else:
             if delta is None:
                 delta = 1e-8  # default delta value
-            success = True
-            standard_msg = ''
-            # check value for keys in target
-            keys1 = set(dict1.keys())
             for key in keys1:
                 val1 = dict1.get(key, default_value)
                 val2 = dict2.get(key, default_value)
@@ -104,7 +100,7 @@ class QiskitTestCase(TestCase):
                     standard_msg += '(%s: %s != %s), ' % (safe_repr(key),
                                                           safe_repr(val1),
                                                           safe_repr(val2))
-            if success is True:
+            if success:
                 return
             standard_msg = standard_msg[:-2] + ' within %s delta' % delta
 
